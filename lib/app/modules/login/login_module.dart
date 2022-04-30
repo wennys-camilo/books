@@ -1,13 +1,17 @@
-import 'package:books/app/modules/login/presentation/login_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'external/datasources/login_remote_datasource_impl.dart';
+import 'domain/usecases/login_usecase_impl.dart';
+import 'external/datasources/remote/login_remote_datasource_impl.dart';
+import 'infra/repositories/login_repository_impl.dart';
 import 'presentation/login_page.dart';
+import 'presentation/login_store.dart';
 
 class LoginModule extends Module {
   @override
   final List<Bind> binds = [
     Bind(((i) => LoginRemoteDataSourceImpl(i.get()))),
-    Bind((i) => LoginStore())
+    Bind(((i) => LoginRepositoryImpl(i.get()))),
+    Bind(((i) => LoginUsecaseImpl(i.get()))),
+    Bind((i) => LoginStore(i.get(), i.get()))
   ];
 
   @override
