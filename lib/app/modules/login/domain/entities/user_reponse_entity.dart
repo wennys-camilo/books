@@ -1,5 +1,5 @@
-import 'package:books/app/shared/domain/entities/token_entity.dart';
-import 'package:books/app/shared/domain/entities/user_entity.dart';
+import '../../../../shared/domain/entities/token_entity.dart';
+import '../../../../shared/domain/entities/user_entity.dart';
 
 class UserResponseEntity {
   final UserEntity userEntity;

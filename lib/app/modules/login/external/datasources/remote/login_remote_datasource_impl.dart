@@ -1,5 +1,5 @@
+import 'package:books/app/shared/domain/entities/token_entity.dart';
 import 'package:dio/dio.dart';
-import '../../../../../shared/external/mappers/token_mapper.dart';
 import '../../../../../shared/domain/helpers/errors/failure.dart';
 import '../../../../../shared/external/adapters/http_client/http_client_adapter.dart';
 import '../../../../../shared/external/mappers/user_mapper.dart';
@@ -17,7 +17,10 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
           .post('auth/sign-in', data: {"email": email, "password": password});
       return UserResponseEntity(
         userEntity: UserMapper().from(response.data),
-        tokenEntity: TokenMapper().from(response.headers),
+        tokenEntity: TokenEntity(
+          token: response.headers['authorization'][0],
+          refreshToken: response.headers['refresh-token'][0],
+        ),
       );
     } on Failure {
       rethrow;

@@ -4,8 +4,14 @@ class InputTextWidget extends StatelessWidget {
   final Color? fillColor;
   final String? labelText;
   final Widget? suffixIcon;
+  final Function(String)? onChanged;
+
   const InputTextWidget(
-      {Key? key, this.fillColor, this.labelText, this.suffixIcon})
+      {Key? key,
+      this.fillColor,
+      this.labelText,
+      this.suffixIcon,
+      this.onChanged})
       : super(key: key);
 
   @override
@@ -25,6 +31,7 @@ class InputTextWidget extends StatelessWidget {
         contentPadding:
             const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
       ),
+      onChanged: onChanged,
     );
   }
 }

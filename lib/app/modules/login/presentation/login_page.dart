@@ -14,6 +14,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends ModularState<LoginPage, LoginStore> {
   final theme = Modular.get<AppTheme>();
+
+  @override
+  void initState() {
+    super.initState();
+    store.observer(
+        onError: ((error) => ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(error.message)))));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,6 +80,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           child: InputTextWidget(
                             labelText: "Email",
                             fillColor: theme.colors.blackLight,
+                            onChanged: store.onChangeEmail,
                           ),
                         ),
                       ),
@@ -102,7 +112,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                     borderRadius: BorderRadius.circular(44),
                                   ),
                                 ),
-                                onPressed: () async {},
+                                onPressed: () async {
+                                  await store.login();
+                                  /*
+                                  Usuário de Teste: desafio@ioasys.com.br
+                                  Senha de Teste: 12341234
+                                  */
+                                },
                                 child: Text(
                                   'Entrar',
                                   style: TextStyle(
@@ -111,6 +127,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                               ),
                             ),
                           ),
+                          onChanged: store.onChangePassword,
                         ),
                       ),
                     ],

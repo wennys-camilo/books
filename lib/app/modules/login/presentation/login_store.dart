@@ -17,4 +17,12 @@ class LoginStore extends StreamStore<Failure, LoginState> {
       await _setTokenUsecase(result.tokenEntity.token);
     });
   }
+
+  onChangeEmail(String value) {
+    update(state.copyWith(email: value));
+  }
+
+  onChangePassword(String value) {
+    update(state.copyWith(password: value));
+  }
 }
