@@ -6,7 +6,7 @@ class HomeStore extends NotifierStore<Exception, int> {
   Future<void> increment() async {
     setLoading(true);
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
     int value = state + 1;
     if (value < 5) {
