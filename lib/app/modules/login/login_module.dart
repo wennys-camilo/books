@@ -1,12 +1,13 @@
-import 'modules/login/login_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class AppModule extends Module {
+import 'presentation/login_page.dart';
+
+class LoginModule extends Module {
   @override
   final List<Bind> binds = [];
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute(Modular.initialRoute, module: LoginModule()),
+    ChildRoute(Modular.initialRoute, child: (_, args) => const LoginPage()),
   ];
 }
