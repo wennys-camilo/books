@@ -1,5 +1,4 @@
-import 'package:books/app/modules/shared/presentation/themes/app_colors.dart';
-
+import 'app_colors.dart';
 import 'app_images.dart';
 
 class AppTheme {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../shared/presentation/themes/app_theme.dart';
-import '../../shared/presentation/widgets/input_text_widget.dart';
+import '../../../shared/presentation/themes/app_theme.dart';
+import '../../../shared/presentation/widgets/input_text_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
