@@ -58,6 +58,7 @@ class DioAdapter implements IHttpClientAdapter {
       );
       HttpResponse response = HttpResponse(
         data: result.data,
+        headers: result.headers,
         statusCode: result.statusCode ?? 200,
       );
       return response;

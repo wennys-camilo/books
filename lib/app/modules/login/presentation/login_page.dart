@@ -1,15 +1,21 @@
+import 'package:books/app/modules/login/presentation/login_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../shared/presentation/themes/app_theme.dart';
 import '../../../shared/presentation/widgets/input_text_widget.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends ModularState<LoginPage, LoginStore> {
+  final theme = Modular.get<AppTheme>();
+  @override
   Widget build(BuildContext context) {
-    final theme = Modular.get<AppTheme>();
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -96,7 +102,7 @@ class LoginPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(44),
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () async {},
                                 child: Text(
                                   'Entrar',
                                   style: TextStyle(

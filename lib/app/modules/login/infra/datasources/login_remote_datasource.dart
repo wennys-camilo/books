@@ -1,1 +1,3 @@
-abstract class LoginRemoteDataSource {}
+abstract class LoginRemoteDataSource {
+  Future<void> signIn();
+}
