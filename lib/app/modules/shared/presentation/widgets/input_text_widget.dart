@@ -19,8 +19,11 @@ class InputTextWidget extends StatelessWidget {
         filled: true,
         fillColor: fillColor,
         border: const OutlineInputBorder(borderSide: BorderSide(width: 0.0)),
-        enabledBorder:
-            const OutlineInputBorder(borderSide: BorderSide(width: 0.0)),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 0.0, color: fillColor ?? Colors.black),
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
       ),
     );
   }

@@ -13,79 +13,103 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                theme.images.background,
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+        body: LayoutBuilder(builder: (context, constraints) {
+          return Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Image.asset(
+                  theme.images.backgroundFull,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                padding:
+                    EdgeInsets.only(left: constraints.maxWidth > 600 ? 50 : 0),
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(theme.images.logo),
-                    const SizedBox(
-                      width: 15,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: constraints.maxWidth > 600 ? 50 : 10,
+                      ),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(theme.images.logo),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Text(
+                            'Books',
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    const Text(
-                      'Books',
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontWeight: FontWeight.normal,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: constraints.maxWidth > 600 ? 50 : 20,
+                        right: constraints.maxWidth > 600 ? 150 : 20,
+                        top: constraints.maxWidth > 600 ? 50 : 110,
+                      ),
+                      child: SizedBox(
+                        child: InputTextWidget(
+                          labelText: "Email",
+                          fillColor: theme.colors.blackLight,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: constraints.maxWidth > 600 ? 50 : 20,
+                        right: constraints.maxWidth > 600 ? 150 : 20,
+                      ),
+                      child: InputTextWidget(
+                        labelText: "Senha",
+                        fillColor: theme.colors.blackLight,
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 20,
+                            top: 4,
+                            bottom: 4,
+                          ),
+                          child: SizedBox(
+                            width: 90,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: Colors.white,
+                                shadowColor: theme.colors.pink,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(44),
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                'Entrar',
+                                style: TextStyle(
+                                    color: theme.colors.pink, fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 110),
-                child: InputTextWidget(
-                  labelText: "Email",
-                  fillColor: theme.colors.blackLight,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: InputTextWidget(
-                  labelText: "Senha",
-                  fillColor: theme.colors.blackLight,
-                  suffixIcon: Padding(
-                    padding:
-                        const EdgeInsets.only(right: 20, top: 4, bottom: 4),
-                    child: SizedBox(
-                      width: 90,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: Colors.white,
-                          shadowColor: theme.colors.pink,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(44)),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'Entrar',
-                          style:
-                              TextStyle(color: theme.colors.pink, fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
             ],
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
