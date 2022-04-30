@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        left: constraints.maxWidth > 600 ? 50 : 10,
+                        left: constraints.maxWidth > 600 ? 50 : 20,
                       ),
                       child: Row(
                         children: [
