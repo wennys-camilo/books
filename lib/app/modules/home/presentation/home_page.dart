@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-
 import 'widgets/rounded_textfield_widget.dart';
 
 class HomePage extends StatefulWidget {
