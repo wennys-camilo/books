@@ -1,5 +1,6 @@
 import 'package:books/app/shared/domain/helpers/errors/failure.dart';
 import 'package:books/app/shared/domain/usecases/set_token_usecase.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import '../domain/usecases/login_usecase.dart';
 import 'login_state.dart';
@@ -15,6 +16,7 @@ class LoginStore extends StreamStore<Failure, LoginState> {
     final response = await _loginUsecase(state.email, state.password);
     response.fold(setError, (result) async {
       await _setTokenUsecase(result.tokenEntity.token);
+      Modular.to.navigate('/home');
     });
   }
 

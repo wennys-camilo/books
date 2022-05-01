@@ -114,6 +114,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                 ),
                                 onPressed: () async {
                                   await store.login();
+                                  Modular.to.navigate('/home');
                                   /*
                                   Usuário de Teste: desafio@ioasys.com.br
                                   Senha de Teste: 12341234

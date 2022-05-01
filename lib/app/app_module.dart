@@ -1,3 +1,4 @@
+import 'package:books/app/modules/home/home_module.dart';
 import 'package:books/app/shared/domain/usecases/fetch_token_usecase_impl.dart';
 import 'package:books/app/shared/domain/usecases/set_token_usecase_impl.dart';
 import 'package:books/app/shared/infra/repositories/token_repository_impl.dart';
@@ -31,5 +32,6 @@ class AppModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: LoginModule()),
+    ModuleRoute('/home', module: HomeModule()),
   ];
 }
