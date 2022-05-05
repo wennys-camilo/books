@@ -1,13 +1,14 @@
-import 'package:books/app/modules/home/presentation/home_state.dart';
-import 'package:books/app/modules/home/presentation/home_store.dart';
-import 'package:books/app/modules/home/presentation/widgets/book_card_widget.dart';
-import 'package:books/app/modules/home/presentation/widgets/modal_bottom_widget.dart';
-import 'package:books/app/shared/domain/helpers/errors/failure.dart';
-import 'package:books/app/shared/presentation/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import '../../../shared/domain/helpers/errors/failure.dart';
+import '../../../shared/presentation/themes/app_theme.dart';
+import 'home_state.dart';
+import 'home_store.dart';
+import 'widgets/book_card_widget.dart';
+import 'widgets/details_dialog_widget.dart';
+import 'widgets/modal_bottom_widget.dart';
 import 'widgets/rounded_textfield_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -134,7 +135,30 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                   itemBuilder: (context, index) {
                                     final book =
                                         triple.bookResponseEntity.books[index];
-                                    return BookCardWidget(book: book);
+                                    return GestureDetector(
+                                      onTap: () => countGrid == 2
+                                          ? showModalBottomSheet(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              isScrollControlled: true,
+                                              context: context,
+                                              builder: (context) {
+                                                return ModalBottomWidget(
+                                                    book: book);
+                                              },
+                                            )
+                                          : showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return DetailsDialogWidget(
+                                                  book: book,
+                                                );
+                                              },
+                                            ),
+                                      child: BookCardWidget(book: book),
+                                    );
                                   },
                                 ),
                               )

@@ -13,11 +13,13 @@ class LoginStore extends StreamStore<Failure, LoginState> {
       : super(LoginState(email: '', password: ''));
 
   Future<void> login() async {
+    setLoading(true);
     final response = await _loginUsecase(state.email, state.password);
     response.fold(setError, (result) async {
       await _setTokenUsecase(result.tokenEntity.token);
       Modular.to.navigate('/home');
     });
+    setLoading(false);
   }
 
   onChangeEmail(String value) {

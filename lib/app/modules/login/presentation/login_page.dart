@@ -2,6 +2,7 @@ import 'package:books/app/modules/login/presentation/login_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_triple/flutter_triple.dart';
 import '../../../shared/presentation/themes/app_theme.dart';
 import '../../../shared/presentation/widgets/input_text_widget.dart';
 
@@ -114,17 +115,31 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                                 ),
                                 onPressed: () async {
                                   await store.login();
-                                  Modular.to.navigate('/home');
+                                  //Modular.to.navigate('/home');
                                   /*
                                   Usuário de Teste: desafio@ioasys.com.br
                                   Senha de Teste: 12341234
                                   */
                                 },
-                                child: Text(
-                                  'Entrar',
-                                  style: TextStyle(
-                                      color: theme.colors.pink, fontSize: 16),
-                                ),
+                                child: TripleBuilder(
+                                    store: store,
+                                    builder: (context, triple) {
+                                      return triple.isLoading
+                                          ? Center(
+                                              child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(3.0),
+                                              child: CircularProgressIndicator(
+                                                color: theme.colors.pink,
+                                              ),
+                                            ))
+                                          : Text(
+                                              'Entrar',
+                                              style: TextStyle(
+                                                  color: theme.colors.pink,
+                                                  fontSize: 16),
+                                            );
+                                    }),
                               ),
                             ),
                           ),
