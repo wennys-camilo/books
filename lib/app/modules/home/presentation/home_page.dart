@@ -94,9 +94,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                   border: Border.all(color: theme.colors.grey),
                                 ),
                                 child: IconButton(
-                                  icon: const Icon(Icons.logout),
-                                  onPressed: () {},
-                                ),
+                                    icon: const Icon(Icons.logout),
+                                    onPressed: () => Modular.to.navigate('/')),
                               )
                             ],
                           ),
